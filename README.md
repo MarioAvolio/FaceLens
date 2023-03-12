@@ -83,9 +83,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+### High-Level architecture
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+
+
+![IMAGE_DESCRIPTION](images/architecture.drawio.png)
+
+Creation of a web application capable of exploiting a device's camera in order to perform Face Recognition operations using neural approaches. In particular, the classification takes place through the analysis of a set of different features and with the biological characteristics of the human face and the possible elements that characterize it.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
