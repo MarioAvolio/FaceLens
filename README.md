@@ -82,14 +82,17 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
+Creation of a web application capable of exploiting a device's camera in order to perform Face Recognition operations using neural approaches. In particular, the classification takes place through the analysis of a set of different features and with the biological characteristics of the human face and the possible elements that characterize it.
 ### High-Level architecture
 
 
 
 ![IMAGE_DESCRIPTION](images/architecture.drawio.png)
 
-Creation of a web application capable of exploiting a device's camera in order to perform Face Recognition operations using neural approaches. In particular, the classification takes place through the analysis of a set of different features and with the biological characteristics of the human face and the possible elements that characterize it.
+The application consists of 2 main blocks:
+* A user friendly UI which allows you to take pictures from webcam or upload an image, created with Bootstrap, Javascript and JQuery
+
+* A backend that processes the output image from the UI thanks to a convolutional deep learning approach implemented with Tensorflow and Keras in a python environment
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
