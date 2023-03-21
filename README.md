@@ -39,7 +39,7 @@
   <p align="center">
     A web application for face recognition
     <br />
-    <a href="https://gitlab.com/gitlab_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://gitlab.com/lab-proj/people-classification/-/wikis/Documentazione"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://gitlab.com/gitlab_username/repo_name">View Demo</a>
