@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FaceLens Prototype</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        #risultato {
+            font-weight: bold;
+            font-size: 6rem;
+            text-align: center;
+        }
+        
+        .canvas-container {
+            margin: 0 auto;
+            border: 1px solid #ccc;
+        }
+        
+        #upload {
+            opacity: 0;
+        }
+        
+        #upload-label {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+        }
+        
+        .image-area {
+            border: 2px dashed rgba(255, 255, 255, 0.7);
+            padding: 1rem;
+            position: relative;
+        }
+        
+        .image-area::before {
+            content: 'Uploaded image result';
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.8rem;
+            z-index: 1;
+        }
+        
+        .image-area img {
+            z-index: 2;
+            position: relative;
+        }
+        
+        body {
+            min-height: 100vh;
+            background-color: #757f9a;
+            background-image: linear-gradient(147deg, #757f9a 0%, #d7dde8 100%);
+        }
+        
+        #my_camera {
+            width: 320px;
+            height: 240px;
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main>
+
+        <div class="container py-5">
+
+            <!--  -->
+            <header class="text-white text-center">
+                <h1 class="display-4">Testing UI + CNN</h1>
+
+            </header>
+
+
+            <div class="row py-4">
+                <div class="col-lg-6 mx-auto">
+
+                    <!-- Upload image input-->
+                    <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                        <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                        <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                        <div class="input-group-append">
+                            <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                        </div>
+                    </div>
+
+
+
+                    <!--Predict Button-->
+                    <a class="btn btn-large btn-success" id="predict">Predict image</a>
+                    <!--Predict Button-->
+                    <a class="btn btn-large btn-success" id="predict2">Predict webcam</a>
+
+
+
+                    <!-- Uploaded image area-->
+                    <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.</p>
+                    <div class="image-area mt-4">
+                        <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" width="30%" height="30%">
+                    </div>
+                    <div id="risultato"></div>
+
+
+
+                    <!-- Camera Snapshot -->
+                    <div id="my_camera"></div>
+                    <input type=button value="Take Snapshot" onclick="take_snapshot()">
+
+                    <div id="results"></div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.24/webcam.js"></script>
+
+    <script type="text/javascript">
+        //SHOW UPLOADED IMAGE
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#imageResult')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(function() {
+            $('#upload').on('change', function() {
+                readURL(input);
+            });
+        });
+
+        //SHOW UPLOADED IMAGE NAME
+        var input = document.getElementById('upload');
+        var infoArea = document.getElementById('upload-label');
+
+        input.addEventListener('change', showFileName);
+
+        function showFileName(event) {
+            var input = event.srcElement;
+            var fileName = input.files[0].name;
+            infoArea.textContent = 'File name: ' + fileName;
+        }
+
+
+
+
+
+        //CARICO MODELLO
+        var modello = null;
+        (async() => {
+            console.log("Carico modello...");
+            modello = await tf.loadGraphModel("/UI+CNN/gender_efficientnet_graph/model.json");
+            console.log("modello caricato...");
+        })();
+
+        //PREDIZIOME
+        $('#predict').on('click', function(e) {
+            console.log("Inizio la predizione...");
+            const img = document.getElementById('imageResult');
+            const image = tf.browser.fromPixels(img);
+            const resized_image = tf.image.resizeBilinear(image, [224, 224]).toFloat();
+            const batchedImage = resized_image.expandDims(0)
+
+            var risultato = modello.predict(batchedImage).dataSync();
+            var risposta;
+            if (risultato <= .5) {
+                risposta = "Donna";
+            } else {
+                risposta = "Uomo";
+            }
+            document.getElementById("risultato").innerHTML = risposta;
+
+            console.log("Predizione eseguita: ", risultato);
+
+
+            // variante predizione: per ora non utile
+            /*             let meanImageNetRGB = tf.tensor1d([123.68, 116.779, 103.939]);
+                        let image2 = $('#imageResult').get(0);
+                        let tensor = tf.browser.fromPixels(image2)
+                            .resizeNearestNeighbor([224, 224])
+                            .toFloat().sub(meanImageNetRGB)
+                            .reverse(2)
+                            .expandDims();
+
+                        let prediction = modello.predict(tensor).data();
+                        console.log("Ya predecì 2: ", prediction); */
+
+
+
+        });
+
+
+
+        //PREDIZIONE WEBCAM
+        $('#predict2').on('click', function(e) {
+            console.log("Inizio la predizione...");
+            const img = document.getElementById('imageResult2');
+            const image = tf.browser.fromPixels(img);
+            const resized_image = tf.image.resizeBilinear(image, [224, 224]).toFloat();
+            const batchedImage = resized_image.expandDims(0)
+
+            var risultato = modello.predict(batchedImage).dataSync();
+            var risposta;
+            if (risultato <= .5) {
+                risposta = "Donna";
+            } else {
+                risposta = "Uomo";
+            }
+            document.getElementById("risultato").innerHTML = risposta;
+
+            console.log("Predizione eseguita: ", risultato);
+        });
+
+
+
+
+
+        // Configure a few settings and attach camera
+        Webcam.set({
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#my_camera');
+
+        // preload shutter audio clip
+        var shutter = new Audio();
+        shutter.autoplay = true;
+        shutter.src = navigator.userAgent.match(/Firefox/) ? 'shutter.ogg' : 'shutter.mp3';
+
+        function take_snapshot() {
+            // play sound effect
+            shutter.play();
+
+            // take snapshot and get image data
+            Webcam.snap(function(data_uri) {
+                // display results in page
+                document.getElementById('results').innerHTML =
+                    '<img id="imageResult2" src="' + data_uri + '"/>';
+            });
+        }
+
+
+        /*         setInterval(function() {
+                    // play sound effect
+                    //shutter.play();
+
+                    // take snapshot and get image data
+                    Webcam.snap(function(data_uri) {
+                        // display results in page
+                        document.getElementById('results').innerHTML =
+                            '<img id="imageResult2" src="' + data_uri + '"/>';
+                    });
+                }, 500); */
+    </script>
+</body>
+
+</html>
