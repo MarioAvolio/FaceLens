@@ -11,7 +11,7 @@ Predizione immagine donna
     Call Method         ${chrome_options}   add_argument    --use-fake-device-for-media-stream
     Create Webdriver    Chrome  alias=tab1  chrome_options=${chrome_options}
     
-    Open Browser  http://127.0.0.1:5500/UI/index.html  chrome
+    Open Browser  http://127.0.0.1:5500/UI+CNN/index.html  chrome
     Click Button    name=upload_image
     Choose File    id=upload    /Users/kevinpretell/Downloads/Immagini prova/selfie-evolution-2010-2014-L-3lyOmg.jpeg
     Click Button    id=predict_upload
@@ -26,7 +26,7 @@ Predizione immagine uomo
     Create Webdriver    Chrome  alias=tab1  chrome_options=${chrome_options}
     
 
-    Open Browser  http://127.0.0.1:5500/UI/index.html  chrome
+    Open Browser  http://127.0.0.1:5500/UI+CNN/index.html  chrome
     Click Button    name=upload_image
     Choose File    id=upload    /Users/kevinpretell/Downloads/Immagini prova/49606417152_5f65e2cb3e_b.jpg
     Click Button    id=predict_upload

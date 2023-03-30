@@ -1,71 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.10.2 on darwin)" generated="20230323 15:48:43.042" rpa="false" schemaversion="3">
+<robot generator="Robot 6.0.2 (Python 3.10.2 on darwin)" generated="20230330 19:14:55.368" rpa="false" schemaversion="3">
 <suite id="s1" name="Prova" source="/Users/kevinpretell/Desktop/people-classification/Testing/prova.robot">
-<test id="s1-t1" name="Prova selenium - predizione donna" line="7">
+<test id="s1-t1" name="Predizione immagine donna" line="8">
 <kw name="Evaluate" library="BuiltIn">
 <var>${chrome_options}</var>
 <arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
 <arg>sys, selenium.webdriver</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20230323 15:48:43.126" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x104b60520&gt;</msg>
-<status status="PASS" starttime="20230323 15:48:43.126" endtime="20230323 15:48:43.127"/>
+<msg timestamp="20230330 19:14:55.446" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x1071c05b0&gt;</msg>
+<status status="PASS" starttime="20230330 19:14:55.445" endtime="20230330 19:14:55.446"/>
 </kw>
 <kw name="Call Method" library="BuiltIn">
 <arg>${chrome_options}</arg>
 <arg>add_argument</arg>
 <arg>--use-fake-ui-for-media-stream</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="PASS" starttime="20230323 15:48:43.127" endtime="20230323 15:48:43.127"/>
+<status status="PASS" starttime="20230330 19:14:55.447" endtime="20230330 19:14:55.447"/>
 </kw>
 <kw name="Call Method" library="BuiltIn">
 <arg>${chrome_options}</arg>
 <arg>add_argument</arg>
 <arg>--use-fake-device-for-media-stream</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="PASS" starttime="20230323 15:48:43.127" endtime="20230323 15:48:43.127"/>
+<status status="PASS" starttime="20230330 19:14:55.447" endtime="20230330 19:14:55.447"/>
 </kw>
 <kw name="Create Webdriver" library="Selenium2Library">
 <arg>Chrome</arg>
 <arg>alias=tab1</arg>
 <arg>chrome_options=${chrome_options}</arg>
 <doc>Creates an instance of Selenium WebDriver.</doc>
-<msg timestamp="20230323 15:48:43.128" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
-<status status="PASS" starttime="20230323 15:48:43.127" endtime="20230323 15:48:50.854"/>
+<msg timestamp="20230330 19:14:55.448" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<status status="PASS" starttime="20230330 19:14:55.447" endtime="20230330 19:15:01.496"/>
 </kw>
 <kw name="Open Browser" library="Selenium2Library">
 <arg>http://127.0.0.1:5500/UI+CNN/index.html</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20230323 15:48:50.856" level="INFO">Opening browser 'chrome' to base url 'http://127.0.0.1:5500/UI+CNN/index.html'.</msg>
-<status status="PASS" starttime="20230323 15:48:50.855" endtime="20230323 15:49:07.202"/>
+<msg timestamp="20230330 19:15:01.497" level="INFO">Opening browser 'chrome' to base url 'http://127.0.0.1:5500/UI+CNN/index.html'.</msg>
+<status status="PASS" starttime="20230330 19:15:01.496" endtime="20230330 19:15:17.838"/>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<arg>name=upload_image</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230330 19:15:17.839" level="INFO">Clicking button 'name=upload_image'.</msg>
+<status status="PASS" starttime="20230330 19:15:17.838" endtime="20230330 19:15:18.332"/>
 </kw>
 <kw name="Choose File" library="Selenium2Library">
 <arg>id=upload</arg>
-<arg>/Users/kevinpretell/Downloads/img_60b96b80770157-57156138-83946253.JPG</arg>
+<arg>/Users/kevinpretell/Downloads/Immagini prova/selfie-evolution-2010-2014-L-3lyOmg.jpeg</arg>
 <doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
-<msg timestamp="20230323 15:49:07.204" level="INFO">Sending /Users/kevinpretell/Downloads/img_60b96b80770157-57156138-83946253.JPG to browser.</msg>
-<status status="PASS" starttime="20230323 15:49:07.203" endtime="20230323 15:49:07.352"/>
+<msg timestamp="20230330 19:15:18.333" level="INFO">Sending /Users/kevinpretell/Downloads/Immagini prova/selfie-evolution-2010-2014-L-3lyOmg.jpeg to browser.</msg>
+<status status="PASS" starttime="20230330 19:15:18.333" endtime="20230330 19:15:18.707"/>
 </kw>
 <kw name="Click Button" library="Selenium2Library">
-<arg>id=predict</arg>
+<arg>id=predict_upload</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20230323 15:49:07.352" level="INFO">Clicking button 'id=predict'.</msg>
-<status status="PASS" starttime="20230323 15:49:07.352" endtime="20230323 15:49:11.258"/>
+<msg timestamp="20230330 19:15:18.707" level="INFO">Clicking button 'id=predict_upload'.</msg>
+<status status="PASS" starttime="20230330 19:15:18.707" endtime="20230330 19:15:24.164"/>
 </kw>
 <kw name="Wait Until Page Contains" library="Selenium2Library">
-<arg>Donna</arg>
+<arg>Woman</arg>
 <doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" starttime="20230323 15:49:11.259" endtime="20230323 15:49:11.511"/>
+<status status="PASS" starttime="20230330 19:15:24.164" endtime="20230330 19:15:24.399"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
-<arg>10s</arg>
+<arg>5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20230323 15:49:21.514" level="INFO">Slept 10 seconds</msg>
-<status status="PASS" starttime="20230323 15:49:11.511" endtime="20230323 15:49:21.515"/>
+<msg timestamp="20230330 19:15:29.401" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20230330 19:15:24.399" endtime="20230330 19:15:29.401"/>
 </kw>
-<status status="PASS" starttime="20230323 15:48:43.125" endtime="20230323 15:49:21.516"/>
+<status status="PASS" starttime="20230330 19:14:55.445" endtime="20230330 19:15:29.401"/>
 </test>
-<status status="PASS" starttime="20230323 15:48:43.044" endtime="20230323 15:49:21.519"/>
+<status status="PASS" starttime="20230330 19:14:55.370" endtime="20230330 19:15:29.402"/>
 </suite>
 <statistics>
 <total>
