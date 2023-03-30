@@ -4,20 +4,84 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FaceLens Prototype</title>
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.108.0">
+    <title>FaceLens</title>
 
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+
     <style>
-        #risultato {
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+        
+        .b-example-divider {
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+        
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+        
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+        
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+        
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        #result_gender,
+        #result_age,
+        #result_gender2,
+        #result_age2 {
             font-weight: bold;
-            font-size: 6rem;
+            font-size: 2rem;
             text-align: center;
         }
         
         .canvas-container {
             margin: 0 auto;
             border: 1px solid #ccc;
+        }
+        
+        #intro {
+            background-image: url("https://i0.wp.com/thedatascientist.com/wp-content/uploads/2015/12/cool_neural_network.jpeg?fit=1500%2C670&ssl=1");
         }
         
         #upload {
@@ -57,8 +121,8 @@
         
         body {
             min-height: 100vh;
-            background-color: #757f9a;
-            background-image: linear-gradient(147deg, #757f9a 0%, #d7dde8 100%);
+            background-color: #ffffff;
+            background-image: linear-gradient(147deg, #ffffff 0%, #eeeeee 100%);
         }
         
         #my_camera {
@@ -68,59 +132,156 @@
         }
     </style>
 
+
 </head>
 
 <body>
 
-    <main>
-
-        <div class="container py-5">
-
-            <!--  -->
-            <header class="text-white text-center">
-                <h1 class="display-4">Testing upload image</h1>
-            </header>
-
-
-            <div class="row py-4">
-                <div class="col-lg-6 mx-auto">
-
-                    <!-- Upload image input-->
-                    <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                        <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                        <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
-                        <div class="input-group-append">
-                            <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
-                        </div>
+    <header>
+        <div class="collapse bg-dark" id="navbarHeader">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-md-7 py-4">
+                        <h4 class="text-white">About</h4>
+                        <p class="text-white">Creation of a web application capable of exploiting a device's camera in order to perform Face Recognition operations using neural approaches. In particular, the classification takes place through the analysis of a set of different
+                            features and with the biological characteristics of the human face and the possible elements that characterize it.
+                        </p>
                     </div>
-
-
-
-                    <!--Predict Button-->
-                    <button class="btn btn-large btn-success" id="predict">Predict image</button>
-                    <!--Predict Button-->
-                    <a class="btn btn-large btn-success" id="predict2">Predict webcam</a>
-
-
-
-                    <!-- Uploaded image area-->
-                    <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.</p>
-                    <div class="image-area mt-4">
-                        <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" width="30%" height="30%">
+                    <div class="col-sm-4 offset-md-1 py-4">
+                        <h4 class="text-white">Contact</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                            <li><a href="#" class="text-white">Like on Facebook</a></li>
+                            <li><a href="#" class="text-white">Email me</a></li>
+                        </ul>
                     </div>
-                    <div id="risultato"></div>
-
-
-
-                    <!-- Camera Snapshot -->
-                    <div id="my_camera"></div>
-                    <input type=button value="Take Snapshot" onclick="take_snapshot()">
-
-                    <div id="results"></div>
-
                 </div>
             </div>
         </div>
+
+
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                        <circle cx="12" cy="13" r="4" />
+                    </svg>
+                    <strong>FaceLens</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+
+        <section class="py-5 text-center container " id="intro">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light text-light">FaceLens</h1>
+                    <p class="lead text-light">Welcome! Our Web application is capable of exploiting your device's camera to perform Face Recognition operations :) !
+                    </p>
+                    <div>
+
+
+
+
+
+                        <!-- Button Webcam modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Use Webcam
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Webcam</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <!-- Webcam -->
+                                    <div class="modal-body">
+
+                                        <!-- Camera Snapshot -->
+                                        <div>
+                                            <div id="my_camera"></div>
+                                            <div id="results"></div>
+                                        </div>
+
+                                        <input type=button value="Take Snapshot" onclick="take_snapshot()">
+
+
+                                        <div id="result_gender2"></div>
+                                        <div id="result_age2"></div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="predict_webcam" type="button" class="btn btn-primary">Predict</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                        <!-- Button Upload modal -->
+                        <button name="upload_image" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#uploadmodal">
+                                                    Upload image
+                                                </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="uploadmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Upload image input-->
+                                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                                            <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                                            <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                                            <div class="input-group-append">
+                                                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Uploaded image area-->
+                                        <p class="font-italic text-muted text-center">The image uploaded will be rendered inside the box below.</p>
+                                        <div class="image-area mt-4">
+                                            <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" width="20%" height="20%">
+                                        </div>
+                                        <div id="result_gender"></div>
+                                        <div id="result_age"></div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="predict_upload" type="button" class="btn btn-primary">Predict</button>
+                                        <button id="close2" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </p>
+                    </div>
+                </div>
+        </section>
+
 
 
 
@@ -128,10 +289,23 @@
 
 
     </main>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <footer class="text-muted py-4">
+        <div class="container">
+            <p class="float-end mb-1">
+                <a>Università degli Studi di Milano-Bicocca, Milano - Italia 2023</a>
+            </p>
+            <p class="mb-1">FaceLens - Created and developed by Kevin Pretell, Simone Benitozzi & Mario Avolio </p>
+            <p class="mb-1">Università degli Studi di Milano-Bicocca </p>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.24/webcam.js"></script>
+
+
 
     <script type="text/javascript">
         //SHOW UPLOADED IMAGE
@@ -147,11 +321,13 @@
             }
         }
 
+
         $(function() {
             $('#upload').on('change', function() {
                 readURL(input);
             });
         });
+
 
         //SHOW UPLOADED IMAGE NAME
         var input = document.getElementById('upload');
@@ -165,77 +341,132 @@
             infoArea.textContent = 'File name: ' + fileName;
         }
 
-
-
-
-
-        //CARICO MODELLO
+        //CARICO MODELLI
         var modello = null;
         (async() => {
-            console.log("Carico modello...");
+            console.log("Carico modelli...");
             modello = await tf.loadGraphModel("/UI+CNN/gender_efficientnet_graph/model.json");
-            console.log("modello caricato...");
+            modello_age = await tf.loadGraphModel("/UI+CNN/age_dropout/model.json");
+
+            console.log("Modelli caricati...");
         })();
 
-        //PREDIZIOME
-        $('#predict').on('click', function(e) {
-            console.log("Inizio la predizione...");
+
+
+        //PREDIZIONE UPLOAD IMMAGINE 
+        $('#predict_upload').on('click', function(e) {
+            console.log("Inizio predizione...");
             const img = document.getElementById('imageResult');
             const image = tf.browser.fromPixels(img);
             const resized_image = tf.image.resizeBilinear(image, [224, 224]).toFloat();
             const batchedImage = resized_image.expandDims(0)
 
-            var risultato = modello.predict(batchedImage).dataSync();
-            var risposta;
-            if (risultato <= .5) {
-                risposta = "Donna";
+            var result_gender = modello.predict(batchedImage).dataSync();
+            var result_age = modello_age.predict(batchedImage).dataSync();
+            result_age = Object.values(result_age);
+
+            console.log("Predizione eseguita...");
+            console.log(typeof result_age);
+            var response;
+            var response_age;
+            if (result_gender <= .5) {
+                response = "Sex: Woman";
             } else {
-                risposta = "Uomo";
+                response = "Sex: Man";
             }
-            document.getElementById("risultato").innerHTML = risposta;
 
-            console.log("Predizione eseguita: ", risultato);
+            result_age = result_age.indexOf(Math.max.apply(Math, result_age));
+            switch (result_age) {
+                case 0:
+                    response_age = "Age: 0-3";
+                    break;
+                case 1:
+                    response_age = "Age: 4-7";
+                    break;
+                case 2:
+                    response_age = "Age: 8-14";
+                    break;
+                case 3:
+                    response_age = "Age: 15-24";
+                    break;
+                case 4:
+                    response_age = "Age: 25-34";
+                    break;
+                case 5:
+                    response_age = "Age: 35-44";
+                    break;
+                case 6:
+                    response_age = "Age: 45-54";
+                    break;
+                case 7:
+                    response_age = "Age: 55+";
+            }
 
-
-            // variante predizione: per ora non utile
-            /*             let meanImageNetRGB = tf.tensor1d([123.68, 116.779, 103.939]);
-                        let image2 = $('#imageResult').get(0);
-                        let tensor = tf.browser.fromPixels(image2)
-                            .resizeNearestNeighbor([224, 224])
-                            .toFloat().sub(meanImageNetRGB)
-                            .reverse(2)
-                            .expandDims();
-
-                        let prediction = modello.predict(tensor).data();
-                        console.log("Ya predecì 2: ", prediction); */
-
-
-
+            document.getElementById("result_gender").innerHTML = response;
+            document.getElementById("result_age").innerHTML = response_age;
+            console.log("Risultato modello gender: ", result_gender);
+            console.log("Risultato modello age: ", result_age);
         });
 
 
 
-        //PREDIZIONE WEBCAM
-        $('#predict2').on('click', function(e) {
-            console.log("Inizio la predizione...");
+
+
+        //PREDIZIONE
+        $('#predict_webcam').on('click', function(e) {
+
+            console.log("Inizio predizione da webcam...");
             const img = document.getElementById('imageResult2');
             const image = tf.browser.fromPixels(img);
             const resized_image = tf.image.resizeBilinear(image, [224, 224]).toFloat();
             const batchedImage = resized_image.expandDims(0)
 
-            var risultato = modello.predict(batchedImage).dataSync();
-            var risposta;
-            if (risultato <= .5) {
-                risposta = "Donna";
+            var result_gender = modello.predict(batchedImage).dataSync();
+            var result_age = modello_age.predict(batchedImage).dataSync();
+            result_age = Object.values(result_age);
+
+            console.log("Predizione eseguita...");
+            console.log(typeof result_age);
+            var response;
+            var response_age;
+            if (result_gender <= .5) {
+                response = "Sex: Woman";
             } else {
-                risposta = "Uomo";
+                response = "Sex: Man";
             }
-            document.getElementById("risultato").innerHTML = risposta;
 
-            console.log("Predizione eseguita: ", risultato);
+            result_age = result_age.indexOf(Math.max.apply(Math, result_age));
+            switch (result_age) {
+                case 0:
+                    response_age = "Age: 0-3";
+                    break;
+                case 1:
+                    response_age = "Age: 4-7";
+                    break;
+                case 2:
+                    response_age = "Age: 8-14";
+                    break;
+                case 3:
+                    response_age = "Age: 15-24";
+                    break;
+                case 4:
+                    response_age = "Age: 25-34";
+                    break;
+                case 5:
+                    response_age = "Age: 35-44";
+                    break;
+                case 6:
+                    response_age = "Age: 45-54";
+                    break;
+                case 7:
+                    response_age = "Age: 55+";
+            }
+
+            document.getElementById("result_gender2").innerHTML = response;
+            document.getElementById("result_age2").innerHTML = response_age;
+            console.log("Risultato modello gender: ", result_gender);
+            console.log("Risultato modello age: ", result_age);
         });
-
-
 
 
 
@@ -248,36 +479,20 @@
         });
         Webcam.attach('#my_camera');
 
-        // preload shutter audio clip
-        var shutter = new Audio();
-        shutter.autoplay = true;
-        shutter.src = navigator.userAgent.match(/Firefox/) ? 'shutter.ogg' : 'shutter.mp3';
+
 
         function take_snapshot() {
-            // play sound effect
-            shutter.play();
-
             // take snapshot and get image data
             Webcam.snap(function(data_uri) {
                 // display results in page
                 document.getElementById('results').innerHTML =
                     '<img id="imageResult2" src="' + data_uri + '"/>';
             });
+
         }
-
-
-        /*         setInterval(function() {
-                    // play sound effect
-                    //shutter.play();
-
-                    // take snapshot and get image data
-                    Webcam.snap(function(data_uri) {
-                        // display results in page
-                        document.getElementById('results').innerHTML =
-                            '<img id="imageResult2" src="' + data_uri + '"/>';
-                    });
-                }, 500); */
     </script>
 </body>
+
+
 
 </html>
