@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.10.2 on darwin)" generated="20230331 12:06:07.704" rpa="false" schemaversion="3">
+<suite id="s1" name="Prova" source="/Users/kevinpretell/Desktop/people-classification/Testing/prova.robot">
+<test id="s1-t1" name="Test integrazione" line="35">
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230331 12:06:07.792" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x1039bc760&gt;</msg>
+<status status="PASS" starttime="20230331 12:06:07.791" endtime="20230331 12:06:07.792"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--use-fake-ui-for-media-stream</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20230331 12:06:07.793" endtime="20230331 12:06:07.793"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--use-fake-device-for-media-stream</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20230331 12:06:07.793" endtime="20230331 12:06:07.793"/>
+</kw>
+<kw name="Create Webdriver" library="Selenium2Library">
+<arg>Chrome</arg>
+<arg>alias=tab1</arg>
+<arg>chrome_options=${chrome_options}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<msg timestamp="20230331 12:06:07.794" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<status status="PASS" starttime="20230331 12:06:07.794" endtime="20230331 12:06:12.824"/>
+</kw>
+<kw name="Open Browser" library="Selenium2Library">
+<arg>http://127.0.0.1:5500/UI+CNN/index.html</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230331 12:06:12.825" level="INFO">Opening browser 'chrome' to base url 'http://127.0.0.1:5500/UI+CNN/index.html'.</msg>
+<status status="PASS" starttime="20230331 12:06:12.825" endtime="20230331 12:06:29.193"/>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<arg>id=navbar</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230331 12:06:29.195" level="INFO">Clicking button 'id=navbar'.</msg>
+<status status="PASS" starttime="20230331 12:06:29.194" endtime="20230331 12:06:29.647"/>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<arg>id=navbar</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230331 12:06:29.647" level="INFO">Clicking button 'id=navbar'.</msg>
+<status status="PASS" starttime="20230331 12:06:29.647" endtime="20230331 12:06:29.844"/>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<arg>name=upload_image</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230331 12:06:29.845" level="INFO">Clicking button 'name=upload_image'.</msg>
+<status status="PASS" starttime="20230331 12:06:29.845" endtime="20230331 12:06:29.951"/>
+</kw>
+<kw name="Choose File" library="Selenium2Library">
+<arg>id=upload</arg>
+<arg>/Users/kevinpretell/Downloads/Immagini prova/selfie-evolution-2010-2014-L-3lyOmg.jpeg</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20230331 12:06:29.952" level="INFO">Sending /Users/kevinpretell/Downloads/Immagini prova/selfie-evolution-2010-2014-L-3lyOmg.jpeg to browser.</msg>
+<status status="PASS" starttime="20230331 12:06:29.952" endtime="20230331 12:06:30.023"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>id=predict_upload</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20230331 12:06:30.024" endtime="20230331 12:06:30.602"/>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<arg>id=predict_upload</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230331 12:06:30.603" level="INFO">Clicking button 'id=predict_upload'.</msg>
+<status status="PASS" starttime="20230331 12:06:30.602" endtime="20230331 12:06:36.042"/>
+</kw>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<arg>Woman</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" starttime="20230331 12:06:36.042" endtime="20230331 12:06:36.190"/>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<arg>id=close2</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230331 12:06:36.191" level="INFO">Clicking button 'id=close2'.</msg>
+<status status="PASS" starttime="20230331 12:06:36.191" endtime="20230331 12:06:36.295"/>
+</kw>
+<status status="PASS" starttime="20230331 12:06:07.791" endtime="20230331 12:06:36.295"/>
+</test>
+<status status="PASS" starttime="20230331 12:06:07.706" endtime="20230331 12:06:36.295"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Prova">Prova</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
