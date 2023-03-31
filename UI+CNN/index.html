@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <script src="./script.js"></script>
 
     <style>
         .bd-placeholder-img {
@@ -169,7 +169,7 @@
                     </svg>
                     <strong>FaceLens</strong>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <button id="navbar" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
@@ -192,7 +192,7 @@
 
 
                         <!-- Button Webcam modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button name="usewebcam" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Use Webcam
                         </button>
 
@@ -222,7 +222,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button id="predict_webcam" type="button" class="btn btn-primary">Predict</button>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button name="closewebcam" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -306,41 +306,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.24/webcam.js"></script>
 
 
-
+    <script src="./script.js"></script>
     <script type="text/javascript">
-        //SHOW UPLOADED IMAGE
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    $('#imageResult')
-                        .attr('src', e.target.result);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-
-        $(function() {
-            $('#upload').on('change', function() {
-                readURL(input);
-            });
-        });
-
-
-        //SHOW UPLOADED IMAGE NAME
-        var input = document.getElementById('upload');
-        var infoArea = document.getElementById('upload-label');
-
-        input.addEventListener('change', showFileName);
-
-        function showFileName(event) {
-            var input = event.srcElement;
-            var fileName = input.files[0].name;
-            infoArea.textContent = 'File name: ' + fileName;
-        }
-
         //CARICO MODELLI
         var modello = null;
         (async() => {
@@ -355,6 +322,8 @@
 
         //PREDIZIONE UPLOAD IMMAGINE 
         $('#predict_upload').on('click', function(e) {
+
+
             console.log("Inizio predizione...");
             const img = document.getElementById('imageResult');
             const image = tf.browser.fromPixels(img);
@@ -406,6 +375,9 @@
             document.getElementById("result_age").innerHTML = response_age;
             console.log("Risultato modello gender: ", result_gender);
             console.log("Risultato modello age: ", result_age);
+            var kevink = true;
+            return kevink;
+
         });
 
 
@@ -468,6 +440,40 @@
             console.log("Risultato modello age: ", result_age);
         });
 
+
+
+
+        //SHOW UPLOADED IMAGE
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imageResult')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $(function() {
+            $('#upload').on('change', function() {
+                readURL(input);
+            });
+        });
+
+
+        //SHOW UPLOADED IMAGE NAME
+        var input = document.getElementById('upload');
+        var infoArea = document.getElementById('upload-label');
+
+        input.addEventListener('change', showFileName);
+
+        function showFileName(event) {
+            var input = event.srcElement;
+            var fileName = input.files[0].name;
+            infoArea.textContent = 'File name: ' + fileName;
+        }
 
 
         // Configure a few settings and attach camera
