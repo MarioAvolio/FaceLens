@@ -1,8 +1,20 @@
 //LOAD MODELS
 async function loadModels() {
     console.log("Carico modelli...");
-    modello = await tf.loadGraphModel("CNN/gender_efficientnet_graph/model.json");
-    modello_age = await tf.loadGraphModel("CNN/age_dropout/model.json");
+    modello = await tf.loadGraphModel("CNN/gender1/model.json");
+    modello2 = await tf.loadGraphModel("CNN/gender2/model.json");
+    modello3 = await tf.loadGraphModel("CNN/gender3/model.json");
+
+    modello_age = await tf.loadGraphModel("CNN/age1/model.json");
+    modello_age2 = await tf.loadGraphModel("CNN/age2/model.json");
+    modello_age3 = await tf.loadGraphModel("CNN/age3/model.json");
+
+    modello_mask = await tf.loadGraphModel("CNN/mask1/model.json");
+
+
+
+
+
     console.log("Modelli caricati...");
     return 0;
 }
@@ -59,14 +71,43 @@ async function prediction() {
     const resized_image = tf.image.resizeBilinear(image, [224, 224]).toFloat();
     const batchedImage = resized_image.expandDims(0)
 
-    var result_gender = modello.predict(batchedImage).dataSync();
-    var result_age = modello_age.predict(batchedImage).dataSync();
+
+    var result_gender;
+    var result_age;
+    var result_mask;
+
+    // CNN selection and prediciton
+    if ((document.getElementById("low").checked == true) || (document.getElementById("low2").checked == true)) {
+        result_gender = modello3.predict(batchedImage).dataSync();
+        result_age = modello_age3.predict(batchedImage).dataSync();
+        result_mask = modello_mask.predict(batchedImage).dataSync();
+    }
+    if ((document.getElementById("med").checked == true) || (document.getElementById("med2").checked == true)) {
+        result_gender = modello2.predict(batchedImage).dataSync();
+        result_age = modello_age2.predict(batchedImage).dataSync();
+        result_mask = modello_mask.predict(batchedImage).dataSync();
+    }
+
+
+    if ((document.getElementById("high").checked == true) || (document.getElementById("high2").checked == true)) {
+        result_gender = modello.predict(batchedImage).dataSync();
+        result_age = modello_age.predict(batchedImage).dataSync();
+        result_mask = modello_mask.predict(batchedImage).dataSync();
+    }
+
+
+
+
     result_age = Object.values(result_age);
 
     console.log("Predizione eseguita...");
+    //console.log("risultato predizione mask:", result_mask);
 
     var response;
     var response_age;
+    var response_mask;
+
+
     if (result_gender <= .5) {
         response = "Gender: Female";
     } else {
@@ -100,6 +141,13 @@ async function prediction() {
             response_age = "Age: 55+";
     }
 
+    if (result_mask <= .5) {
+        response_mask = "Mask: False";
+    } else {
+        response_mask = "Mask: True";
+    }
+
+
 
     // show prediction on HTML
     if (document.getElementById("webcam_card").style.display == 'block') {
@@ -109,9 +157,11 @@ async function prediction() {
 
     document.getElementById("result_gender").innerHTML = response;
     document.getElementById("result_age").innerHTML = response_age;
+    document.getElementById("result_mask").innerHTML = response_mask;
 
     document.getElementById("result_gender2").innerHTML = response;
     document.getElementById("result_age2").innerHTML = response_age;
+    document.getElementById("result_mask2").innerHTML = response_mask;
 
     console.log("Risultato modello gender: ", result_gender);
     console.log("Risultato modello age: ", result_age);
