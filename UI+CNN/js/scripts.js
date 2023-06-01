@@ -53,7 +53,14 @@ async function take_snapshot() {
 
 
 //PREDICTION
+var prediction_button = document.getElementById("predict_webcam");
+var timepred = 4000;
+
 async function prediction() {
+
+    prediction_button.setAttribute('data-loading', '');
+
+
 
     // take a snapshot
     if (document.getElementById("webcam_card").style.display == 'block') {
@@ -76,16 +83,20 @@ async function prediction() {
     var result_age;
     var result_mask;
 
+
+
     // CNN selection and prediciton
     if ((document.getElementById("low").checked == true) || (document.getElementById("low2").checked == true)) {
         result_gender = modello3.predict(batchedImage).dataSync();
         result_age = modello_age3.predict(batchedImage).dataSync();
         result_mask = modello_mask.predict(batchedImage).dataSync();
+        timepred = 900;
     }
     if ((document.getElementById("med").checked == true) || (document.getElementById("med2").checked == true)) {
         result_gender = modello2.predict(batchedImage).dataSync();
         result_age = modello_age2.predict(batchedImage).dataSync();
         result_mask = modello_mask.predict(batchedImage).dataSync();
+        timepred = 2000;
     }
 
 
@@ -148,26 +159,38 @@ async function prediction() {
     }
 
 
-
     // show prediction on HTML
     if (document.getElementById("webcam_card").style.display == 'block') {
         document.getElementById("imageResult2").style.display = "none";
     }
 
 
-    document.getElementById("result_gender").innerHTML = response;
-    document.getElementById("result_age").innerHTML = response_age;
-    document.getElementById("result_mask").innerHTML = response_mask;
 
-    document.getElementById("result_gender2").innerHTML = response;
-    document.getElementById("result_age2").innerHTML = response_age;
-    document.getElementById("result_mask2").innerHTML = response_mask;
+    var resetTimeout;
+    clearTimeout(resetTimeout);
+    resetTimeout = setTimeout(function() {
 
-    console.log("Risultato modello gender: ", result_gender);
-    console.log("Risultato modello age: ", result_age);
+        document.getElementById("result_gender").innerHTML = response;
+        document.getElementById("result_age").innerHTML = response_age;
+        document.getElementById("result_mask").innerHTML = response_mask;
+
+        document.getElementById("result_gender2").innerHTML = response;
+        document.getElementById("result_age2").innerHTML = response_age;
+        document.getElementById("result_mask2").innerHTML = response_mask;
+
+        console.log("Risultato modello gender: ", result_gender);
+        console.log("Risultato modello age: ", result_age);
+
+
+
+        prediction_button.removeAttribute('data-loading');
+
+    }, timepred);
+
+
+
 
 }
-
 
 
 
@@ -208,22 +231,3 @@ async function readURL(input) {
     prediction();
 
 }
-
-
-//Loading Popup
-$("#predict_webcam").on('click', function() {
-    setTimeout(function() {
-        $('.loader').hide(300);
-    }, 5000);
-});
-
-$("#predict_webcam").on('click', function() {
-    var loadingCounter = setInterval(function() {
-        var count = parseInt($('.countdown').html());
-        if (count !== 0) {
-            $('.countdown').html(count - 1);
-        } else {
-            clearInterval();
-        }
-    }, 1000);
-});

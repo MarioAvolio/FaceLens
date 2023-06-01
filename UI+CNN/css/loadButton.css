@@ -1,0 +1,502 @@
+.examples {
+    max-width: 670px;
+    margin: 2em auto;
+    padding: 4em;
+    background: #fff;
+    text-align: center
+}
+
+.examples .intro {
+    margin-bottom: 3em;
+    line-height: 1.4em;
+    font-size: 16px;
+    text-align: left;
+}
+
+.examples .intro h1 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.examples .outro {
+    display: block;
+    text-align: right;
+    margin-top: 3em;
+}
+
+.examples section {
+    display: inline-block;
+    width: 24%;
+    min-width: 160px;
+    margin-bottom: 2em;
+    text-align: center;
+    vertical-align: top;
+}
+
+.examples section h3 {
+    color: #bbb;
+    font-weight: normal;
+}
+
+
+/*************************************
+ * BUTTON BASE
+ */
+
+.arlina-button {
+    position: relative;
+    background: none;
+    border: 0;
+    padding: 0.8em 1em;
+    font-size: 1.3em;
+    cursor: pointer;
+    outline: 0;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.arlina-button[data-loading] {
+    cursor: default;
+}
+
+
+/* Green button */
+
+.arlina-button.green {
+    background: #2aca76;
+    color: #fff;
+    border-radius: 2px;
+    border: 1px solid transparent;
+}
+
+.arlina-button.green:hover {
+    border-color: rgba( 0, 0, 0, 0.07);
+    background-color: #2fe688;
+}
+
+.arlina-button.green[data-loading] {
+    border-color: rgba( 0, 0, 0, 0.07);
+    background-color: #999;
+}
+
+
+/* Blue button */
+
+.arlina-button.blue {
+    background: #1e30f3;
+    color: #fff;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    font-weight: bolder !important;
+    font-size: 1.1rem !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+    margin: 1rem !important;
+    display: inline-block;
+}
+
+.arlina-button.blue:hover {
+    border-color: rgba( 0, 0, 0, 0.07);
+    background-color: #1826c2;
+}
+
+.arlina-button.blue[data-loading] {
+    border-color: rgba( 0, 0, 0, 0.07);
+    background-color: #999;
+}
+
+
+/* Orange button */
+
+.arlina-button.orange {
+    background: #ea8557;
+    color: #fff;
+    border-radius: 2px;
+    border: 1px solid transparent;
+}
+
+.arlina-button.orange:hover {
+    border-color: rgba( 0, 0, 0, 0.07);
+    background-color: #ffa96c;
+}
+
+.arlina-button.orange[data-loading] {
+    border-color: rgba( 0, 0, 0, 0.07);
+    background-color: #999;
+}
+
+
+/* Spinner animation */
+
+.arlina-button .spinner {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 50%;
+    margin-top: -16px;
+    opacity: 0;
+    background-image: url(http://2.bp.blogspot.com/-GPSLDnKmX3s/VSvPkXsCHvI/AAAAAAAACOg/Xmm2kIDu-CU/s1600/spin.gif);
+}
+
+
+/*************************************
+ * EASING
+ */
+
+.arlina-button,
+.arlina-button .spinner,
+.arlina-button .label {
+    -webkit-transition: 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275) all;
+    -moz-transition: 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275) all;
+    -ms-transition: 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275) all;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275) all;
+}
+
+.arlina-button.zoom-in,
+.arlina-button.zoom-in .spinner,
+.arlina-button.zoom-in .label,
+.arlina-button.zoom-out,
+.arlina-button.zoom-out .spinner,
+.arlina-button.zoom-out .label {
+    -webkit-transition: 0.3s ease all;
+    -moz-transition: 0.3s ease all;
+    -ms-transition: 0.3s ease all;
+    transition: 0.3s ease all;
+}
+
+
+/*************************************
+ * EXPAND LEFT
+ */
+
+.arlina-button.expand-right .spinner {
+    right: 0.8em;
+}
+
+.arlina-button.expand-right[data-loading] {
+    padding-right: 56px;
+}
+
+.arlina-button.expand-right[data-loading] .spinner {
+    opacity: 1;
+}
+
+
+/*************************************
+ * EXPAND RIGHT
+ */
+
+.arlina-button.expand-left .spinner {
+    left: 0.8em;
+}
+
+.arlina-button.expand-left[data-loading] {
+    padding-left: 56px;
+}
+
+.arlina-button.expand-left[data-loading] .spinner {
+    opacity: 1;
+}
+
+
+/*************************************
+ * EXPAND UP
+ */
+
+.arlina-button.expand-up {
+    overflow: hidden;
+}
+
+.arlina-button.expand-up .spinner {
+    top: -32px;
+    left: 50%;
+    margin-left: -16px;
+}
+
+.arlina-button.expand-up[data-loading] {
+    padding-top: 3em;
+}
+
+.arlina-button.expand-up[data-loading] .spinner {
+    opacity: 1;
+    top: 0.8em;
+    margin-top: 0;
+}
+
+
+/*************************************
+ * EXPAND DOWN
+ */
+
+.arlina-button.expand-down {
+    overflow: hidden;
+}
+
+.arlina-button.expand-down .spinner {
+    top: 3.3em;
+    left: 50%;
+    margin-left: -16px;
+}
+
+.arlina-button.expand-down[data-loading] {
+    padding-bottom: 3em;
+}
+
+.arlina-button.expand-down[data-loading] .spinner {
+    opacity: 1;
+}
+
+
+/*************************************
+ * SLIDE LEFT
+ */
+
+.arlina-button.slide-left {
+    overflow: hidden;
+}
+
+.arlina-button.slide-left .label {
+    position: relative;
+}
+
+.arlina-button.slide-left .spinner {
+    left: 100%;
+    margin-left: -16px;
+}
+
+.arlina-button.slide-left[data-loading] .label {
+    opacity: 0;
+    left: -100%;
+}
+
+.arlina-button.slide-left[data-loading] .spinner {
+    opacity: 1;
+    left: 50%;
+}
+
+
+/*************************************
+ * SLIDE RIGHT
+ */
+
+.arlina-button.slide-right {
+    overflow: hidden;
+}
+
+.arlina-button.slide-right .label {
+    position: relative;
+}
+
+.arlina-button.slide-right .spinner {
+    right: 100%;
+    margin-left: -16px;
+}
+
+.arlina-button.slide-right[data-loading] .label {
+    opacity: 0;
+    left: 100%;
+}
+
+.arlina-button.slide-right[data-loading] .spinner {
+    opacity: 1;
+    left: 50%;
+}
+
+
+/*************************************
+ * SLIDE UP
+ */
+
+.arlina-button.slide-up {
+    overflow: hidden;
+}
+
+.arlina-button.slide-up .label {
+    position: relative;
+}
+
+.arlina-button.slide-up .spinner {
+    left: 50%;
+    margin-left: -16px;
+    margin-top: 1em;
+}
+
+.arlina-button.slide-up[data-loading] .label {
+    opacity: 0;
+    top: -1em;
+}
+
+.arlina-button.slide-up[data-loading] .spinner {
+    opacity: 1;
+    margin-top: -16px;
+}
+
+
+/*************************************
+ * SLIDE DOWN
+ */
+
+.arlina-button.slide-down {
+    overflow: hidden;
+}
+
+.arlina-button.slide-down .label {
+    position: relative;
+}
+
+.arlina-button.slide-down .spinner {
+    left: 50%;
+    margin-left: -16px;
+    margin-top: -2em;
+}
+
+.arlina-button.slide-down[data-loading] .label {
+    opacity: 0;
+    top: 1em;
+}
+
+.arlina-button.slide-down[data-loading] .spinner {
+    opacity: 1;
+    margin-top: -16px;
+}
+
+
+/*************************************
+ * ZOOM-OUT
+ */
+
+.arlina-button.zoom-out {
+    overflow: hidden;
+}
+
+.arlina-button.zoom-out .spinner {
+    left: 50%;
+    margin-left: -16px;
+    -webkit-transform: scale( 2.5);
+    -moz-transform: scale( 2.5);
+    -ms-transform: scale( 2.5);
+    transform: scale( 2.5);
+}
+
+.arlina-button.zoom-out .label {
+    position: relative;
+    display: inline-block;
+}
+
+.arlina-button.zoom-out[data-loading] .label {
+    opacity: 0;
+    -webkit-transform: scale( 0.5);
+    -moz-transform: scale( 0.5);
+    -ms-transform: scale( 0.5);
+    transform: scale( 0.5);
+}
+
+.arlina-button.zoom-out[data-loading] .spinner {
+    opacity: 1;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    transform: none;
+}
+
+
+/*************************************
+ * ZOOM-IN
+ */
+
+.arlina-button.zoom-in {
+    overflow: hidden;
+}
+
+.arlina-button.zoom-in .spinner {
+    left: 50%;
+    margin-left: -16px;
+    -webkit-transform: scale( 0.2);
+    -moz-transform: scale( 0.2);
+    -ms-transform: scale( 0.2);
+    transform: scale( 0.2);
+}
+
+.arlina-button.zoom-in .label {
+    position: relative;
+    display: inline-block;
+}
+
+.arlina-button.zoom-in[data-loading] .label {
+    opacity: 0;
+    -webkit-transform: scale( 2.2);
+    -moz-transform: scale( 2.2);
+    -ms-transform: scale( 2.2);
+    transform: scale( 2.2);
+}
+
+.arlina-button.zoom-in[data-loading] .spinner {
+    opacity: 1;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    transform: none;
+}
+
+
+/*************************************
+ * CONTRACt
+ */
+
+.arlina-button.contract {
+    overflow: hidden;
+    width: 100px;
+}
+
+.arlina-button.contract .spinner {
+    left: 50%;
+    margin-left: -16px;
+}
+
+.arlina-button.contract[data-loading] {
+    border-radius: 50%;
+    width: 52px;
+}
+
+.arlina-button.contract[data-loading] .label {
+    opacity: 0;
+}
+
+.arlina-button.contract[data-loading] .spinner {
+    opacity: 1;
+}
+
+
+/*************************************
+ * OVERLAY
+ */
+
+.arlina-button.contract-overlay {
+    overflow: hidden;
+    /* width: 100px; */
+    box-shadow: 0px 0px 0px 3000px rgba(0, 0, 0, 0);
+}
+
+.arlina-button.contract-overlay .spinner {
+    left: 50%;
+    margin-left: -16px;
+}
+
+.arlina-button.contract-overlay[data-loading] {
+    border-radius: 50%;
+    height: 52px;
+    width: 52px;
+    /*outline: 10000px solid rgba( 0, 0, 0, 0.5 );*/
+    box-shadow: 0px 0px 0px 3000px rgba(0, 0, 0, 0.8);
+}
+
+.arlina-button.contract-overlay[data-loading] .label {
+    opacity: 0;
+}
+
+.arlina-button.contract-overlay[data-loading] .spinner {
+    opacity: 1;
+}
