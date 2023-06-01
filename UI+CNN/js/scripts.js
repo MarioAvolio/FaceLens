@@ -37,6 +37,7 @@ function useWebcam() {
     });
     Webcam.attach('#my_camera');
     document.getElementsByTagName('video')[0].setAttribute("id", "webcam")
+
 }
 
 
@@ -57,6 +58,12 @@ var prediction_button = document.getElementById("predict_webcam");
 var timepred = 4000;
 
 async function prediction() {
+
+    // check if there is a face
+    if (face_detected == false) {
+        window.alert("No face was found!");
+        throw new Error("No face was found!");
+    }
 
     prediction_button.setAttribute('data-loading', '');
 
@@ -162,6 +169,7 @@ async function prediction() {
     // show prediction on HTML
     if (document.getElementById("webcam_card").style.display == 'block') {
         document.getElementById("imageResult2").style.display = "none";
+        // timepred = 0;
     }
 
 
@@ -210,6 +218,7 @@ function webcam_image() {
     document.getElementById("result_mask").innerHTML = "Mask: ";
     document.getElementById("upload_card").style.display = "none";
     document.getElementById("webcam_card").style.display = "block";
+
 }
 
 

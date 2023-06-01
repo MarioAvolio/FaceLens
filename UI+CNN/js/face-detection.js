@@ -3,6 +3,7 @@ let displaySize = { width: 360, height: 270 };
 let modelPath = 'models';
 let currentStream;
 let faceDetection;
+let face_detected = false;
 
 
 async function checkDetection() {
@@ -42,5 +43,11 @@ function startDetection() {
         canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
         faceapi.draw.drawDetections(canvas, resizedDetections)
         faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+        face_detected = true;
+
+        if (detections.length == 0) {
+            face_detected = false;
+        }
+
     }, 200)
 }
