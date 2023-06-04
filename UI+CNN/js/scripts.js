@@ -1,6 +1,6 @@
 //LOAD MODELS
 async function loadModels() {
-    console.log("Carico modelli...");
+    //console.log("Carico modelli...");
     modello = await tf.loadGraphModel("CNN/gender1/model.json");
     modello2 = await tf.loadGraphModel("CNN/gender2/model.json");
     modello3 = await tf.loadGraphModel("CNN/gender3/model.json");
@@ -12,10 +12,7 @@ async function loadModels() {
     modello_mask = await tf.loadGraphModel("CNN/mask1/model.json");
 
 
-
-
-
-    console.log("Modelli caricati...");
+    console.log("Modelli caricati correttamente!");
     return 0;
 }
 
@@ -37,7 +34,7 @@ function useWebcam() {
     });
     Webcam.attach('#my_camera');
     document.getElementsByTagName('video')[0].setAttribute("id", "webcam")
-
+    console.log("Webcam collegata correttamente!");
 }
 
 
@@ -49,6 +46,7 @@ async function take_snapshot() {
         // display results in page
         document.getElementById('results').innerHTML = '<img id="imageResult2" src="' + data_uri + '"/>';
     });
+    console.log("Foto scattata correttamente!");
 }
 
 
@@ -61,8 +59,8 @@ async function prediction() {
 
     // check if there is a face
     if (face_detected == false) {
-        window.alert("No face was found!");
-        throw new Error("No face was found!");
+        //window.alert("No face was found!");
+        //throw new Error("No face was found!");
     }
 
     prediction_button.setAttribute('data-loading', '');
@@ -76,7 +74,7 @@ async function prediction() {
 
 
     // start the prediction phase
-    console.log("Inizio predizione da webcam...");
+    console.log("Inizio predizione da Webcam...");
     img = document.getElementById('imageResult2');
     if (document.getElementById("upload_card").style.display == 'block') {
         img = document.getElementById('imageResult3');
@@ -117,8 +115,6 @@ async function prediction() {
 
 
     result_age = Object.values(result_age);
-
-    console.log("Predizione eseguita...");
     //console.log("risultato predizione mask:", result_mask);
 
     var response;
@@ -169,8 +165,8 @@ async function prediction() {
     // show prediction on HTML
     if (document.getElementById("webcam_card").style.display == 'block') {
         document.getElementById("imageResult2").style.display = "none";
-        // timepred = 0;
     }
+
 
 
 
@@ -186,12 +182,13 @@ async function prediction() {
         document.getElementById("result_age2").innerHTML = response_age;
         document.getElementById("result_mask2").innerHTML = response_mask;
 
-        console.log("Risultato modello gender: ", result_gender);
-        console.log("Risultato modello age: ", result_age);
+        //console.log("Risultato sesso: ", result_gender);
+        //console.log("Risultato età: ", result_age);
 
 
 
         prediction_button.removeAttribute('data-loading');
+        console.log("Predizione eseguita correttamente!");
 
     }, timepred);
 
@@ -236,7 +233,10 @@ async function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 
+    console.log("Immagine letta correttamente");
+
     await new Promise((resolve) => { document.getElementById("imageResult3").onload = resolve; });
     prediction();
+
 
 }

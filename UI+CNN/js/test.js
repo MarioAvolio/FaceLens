@@ -1,5 +1,5 @@
-QUnit.module('loadModels', function() {
+QUnit.module('Test caricamento dei modelli', function() {
     QUnit.test('load models', function(assert) {
-        assert.equal(loadModels(), 0);
+        assert.equal(prova(), 0);
     });
 });

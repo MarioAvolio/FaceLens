@@ -1,6 +1,6 @@
 //var buttons = document.querySelectorAll('.arlina-button');
 
-Array.prototype.slice.call(buttons).forEach(function(button) {
+/* Array.prototype.slice.forEach(function(button) {
 
     var resetTimeout;
 
@@ -19,4 +19,4 @@ Array.prototype.slice.call(buttons).forEach(function(button) {
 
     }, false);
 
-});
+}); */
