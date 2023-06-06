@@ -24,16 +24,19 @@ async function checkDetection() {
             }, 1000);
         }
     }
+    console.log("Face detection avviata correttamente!");
 }
+
 
 function createCanvas() {
     if (document.getElementsByTagName("canvas").length == 0) {
-        console.log("inizio a creare canvas");
         canvas = faceapi.createCanvasFromMedia(webcamElement)
         document.getElementById('webcam-container').append(canvas)
         faceapi.matchDimensions(canvas, displaySize)
+        console.log("Canvas creato correttamente!");
     }
 }
+
 
 
 function startDetection() {
@@ -50,4 +53,5 @@ function startDetection() {
         }
 
     }, 200)
+    console.log("Face detection in funzione correttamente!");
 }
