@@ -53,14 +53,16 @@ async function take_snapshot() {
 
 //PREDICTION
 var prediction_button = document.getElementById("predict_webcam");
-var timepred = 4000;
+var timepred = 1500;
 
 async function prediction() {
 
     // check if there is a face
-    if (face_detected == false) {
-        //window.alert("No face was found!");
-        //throw new Error("No face was found!");
+    if (document.getElementById("webcam_card").style.display == 'block') {
+        if (face_detected == false) {
+            window.alert("No face was found!");
+            throw new Error("No face was found!");
+        }
     }
 
     prediction_button.setAttribute('data-loading', '');
@@ -95,13 +97,13 @@ async function prediction() {
         result_gender = modello3.predict(batchedImage).dataSync();
         result_age = modello_age3.predict(batchedImage).dataSync();
         result_mask = modello_mask.predict(batchedImage).dataSync();
-        timepred = 900;
+        timepred = 300;
     }
     if ((document.getElementById("med").checked == true) || (document.getElementById("med2").checked == true)) {
         result_gender = modello2.predict(batchedImage).dataSync();
         result_age = modello_age2.predict(batchedImage).dataSync();
         result_mask = modello_mask.predict(batchedImage).dataSync();
-        timepred = 2000;
+        timepred = 600;
     }
 
 
