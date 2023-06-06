@@ -3,6 +3,7 @@ let displaySize = { width: 360, height: 270 };
 let modelPath = 'models';
 let currentStream;
 let faceDetection;
+let face_detected = false;
 
 
 async function checkDetection() {
@@ -23,16 +24,19 @@ async function checkDetection() {
             }, 1000);
         }
     }
+    console.log("Face detection avviata correttamente!");
 }
+
 
 function createCanvas() {
     if (document.getElementsByTagName("canvas").length == 0) {
-        console.log("inizio a creare canvas");
         canvas = faceapi.createCanvasFromMedia(webcamElement)
         document.getElementById('webcam-container').append(canvas)
         faceapi.matchDimensions(canvas, displaySize)
+        console.log("Canvas creato correttamente!");
     }
 }
+
 
 
 function startDetection() {
@@ -42,5 +46,12 @@ function startDetection() {
         canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
         faceapi.draw.drawDetections(canvas, resizedDetections)
         faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+        face_detected = true;
+
+        if (detections.length == 0) {
+            face_detected = false;
+        }
+
     }, 200)
+    console.log("Face detection in funzione correttamente!");
 }
