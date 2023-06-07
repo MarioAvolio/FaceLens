@@ -14,7 +14,7 @@ async function loadModels() {
     modello_mask3 = await tf.loadGraphModel("CNN/mask3/model.json");
 
 
-    console.log("Modelli caricati correttamente!");
+    console.log("Models loaded successfully!");
     return 0;
 }
 
@@ -36,7 +36,7 @@ function useWebcam() {
     });
     Webcam.attach('#my_camera');
     document.getElementsByTagName('video')[0].setAttribute("id", "webcam")
-    console.log("Webcam collegata correttamente!");
+    console.log("Webcam connected correctly!");
 }
 
 
@@ -48,7 +48,7 @@ async function take_snapshot() {
         // display results in page
         document.getElementById('results').innerHTML = '<img id="imageResult2" src="' + data_uri + '"/>';
     });
-    console.log("Foto scattata correttamente!");
+    console.log("Photo taken successfully!");
 }
 
 
@@ -82,7 +82,7 @@ async function prediction() {
 
 
     // start the prediction phase
-    console.log("Inizio predizione...");
+    console.log("Beginning prediction...");
     img = document.getElementById('imageResult2');
     if (document.getElementById("upload_card").style.display == 'block') {
         img = document.getElementById('imageResult3');
@@ -138,7 +138,7 @@ async function prediction() {
 
 
     result_age = Object.values(result_age);
-    console.log("risultato predizione mask:", result_mask);
+    //console.log("risultato predizione mask:", result_mask);
 
     var response;
     var response_age;
@@ -211,7 +211,7 @@ async function prediction() {
 
 
         prediction_button.removeAttribute('data-loading');
-        console.log("Predizione eseguita correttamente!");
+        console.log("Prediction Done Correctly!");
 
     }, timepred);
 
@@ -256,7 +256,7 @@ async function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 
-    console.log("Immagine letta correttamente");
+    console.log("Image read correctly!");
 
     await new Promise((resolve) => { document.getElementById("imageResult3").onload = resolve; });
     prediction();
