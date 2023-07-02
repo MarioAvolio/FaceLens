@@ -1,504 +1,224 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.108.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="Kevin Pretell" />
     <title>FaceLens</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="./script.js"></script>
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-        
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-        
-        .b-example-divider {
-            height: 3rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-        
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-        
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
-        
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-        
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        #result_gender,
-        #result_age,
-        #result_gender2,
-        #result_age2 {
-            font-weight: bold;
-            font-size: 2rem;
-            text-align: center;
-        }
-        
-        .canvas-container {
-            margin: 0 auto;
-            border: 1px solid #ccc;
-        }
-        
-        #intro {
-            background-image: url("https://i0.wp.com/thedatascientist.com/wp-content/uploads/2015/12/cool_neural_network.jpeg?fit=1500%2C670&ssl=1");
-        }
-        
-        #upload {
-            opacity: 0;
-        }
-        
-        #upload-label {
-            position: absolute;
-            top: 50%;
-            left: 1rem;
-            transform: translateY(-50%);
-        }
-        
-        .image-area {
-            border: 2px dashed rgba(255, 255, 255, 0.7);
-            padding: 1rem;
-            position: relative;
-        }
-        
-        .image-area::before {
-            content: 'Uploaded image result';
-            color: #fff;
-            font-weight: bold;
-            text-transform: uppercase;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 0.8rem;
-            z-index: 1;
-        }
-        
-        .image-area img {
-            z-index: 2;
-            position: relative;
-        }
-        
-        body {
-            min-height: 100vh;
-            background-color: #ffffff;
-            background-image: linear-gradient(147deg, #ffffff 0%, #eeeeee 100%);
-        }
-        
-        #my_camera {
-            width: 320px;
-            height: 240px;
-            border: 1px solid black;
-        }
-    </style>
-
-
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Custom Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
 </head>
 
-<body>
-
-    <header>
-        <div class="collapse bg-dark" id="navbarHeader">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8 col-md-7 py-4">
-                        <h4 class="text-white">About</h4>
-                        <p class="text-white">Creation of a web application capable of exploiting a device's camera in order to perform Face Recognition operations using neural approaches. In particular, the classification takes place through the analysis of a set of different
-                            features and with the biological characteristics of the human face and the possible elements that characterize it.
-                        </p>
-                    </div>
-                    <div class="col-sm-4 offset-md-1 py-4">
-                        <h4 class="text-white">Contact</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                            <li><a href="#" class="text-white">Like on Facebook</a></li>
-                            <li><a href="#" class="text-white">Email me</a></li>
-                        </ul>
-                    </div>
+<body class="d-flex flex-column h-100">
+    <main class="masthead flex-shrink-0">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container px-5">
+                <a class="navbar-brand" href="index.html"><span class="fw-bolder text-secondary">FaceLens</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="app.html">App</a></li>
+                        <li class="nav-item"><a class="nav-link" href="developers.html">Developers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
                 </div>
             </div>
-        </div>
-
-
-        <div class="navbar navbar-dark bg-dark shadow-sm">
-            <div class="container">
-                <a href="#" class="navbar-brand d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24">
-                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                        <circle cx="12" cy="13" r="4" />
-                    </svg>
-                    <strong>FaceLens</strong>
-                </a>
-                <button id="navbar" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <main>
-
-
-        <section class="py-5 text-center container " id="intro">
-            <div class="row py-lg-5">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-light text-light">FaceLens</h1>
-                    <p class="lead text-light">Welcome! Our Web application is capable of exploiting your device's camera to perform Face Recognition operations :) !
-                    </p>
-                    <div>
-
-
-
-
-
-                        <!-- Button Webcam modal -->
-                        <button name="usewebcam" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Use Webcam
-                        </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Webcam</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <!-- Webcam -->
-                                    <div class="modal-body">
-
-                                        <!-- Camera Snapshot -->
-                                        <div>
-                                            <div id="my_camera"></div>
-                                            <div id="results"></div>
-                                        </div>
-
-                                        <input type=button value="Take Snapshot" onclick="take_snapshot()">
-
-
-                                        <div id="result_gender2"></div>
-                                        <div id="result_age2"></div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button id="predict_webcam" type="button" class="btn btn-primary">Predict</button>
-                                        <button name="closewebcam" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
+        </nav>
+        <!-- Header-->
+        <header class="masthead py-5">
+            <div class="container px-5 pb-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-xxl-5">
+                        <!-- Header text content-->
+                        <div class="text-center text-xxl-start">
+                            <div class="badge bg-gradient-primary-to-secondary text-white mb-4">
+                                <div class="text-uppercase"> AI &middot; Deep Learning &middot; Computer Vision</div>
+                            </div>
+                            <div class="fs-3 fw-light text-muted">Hi! Welcome to</div>
+                            <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">FaceLens</span></h1>
+                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+                                <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="app.html">Try the app</a>
+                                <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="developers.html">About us</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-7">
+                        <!-- Header profile picture-->
+                        <div class="d-flex justify-content-center mt-5 mt-xxl-0">
+                            <div class="profile bg-gradient-primary-to-secondary">
+                                <!-- TIP: For best results, use a photo with a transparent background like the demo example below-->
+                                <!-- Watch a tutorial on how to do this on YouTube (link)-->
+                                <img class="profile-img" src="assets/profile3.png" alt="..." />
+                                <div class="dots-1">
+                                    <!-- SVG Dots-->
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background: new 0 0 191.6 1215.4" xml:space="preserve">
+                                            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)">
+                                                <path d="M227.7,12788.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,12801.6,289.7,12808.6,227.7,12788.6z"></path>
+                                                <path d="M1507.7,12788.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262        C1663.7,12801.6,1569.7,12808.6,1507.7,12788.6z"></path>
+                                                <path d="M227.7,11508.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,11521.6,289.7,11528.6,227.7,11508.6z"></path>
+                                                <path d="M1507.7,11508.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262        C1663.7,11521.6,1569.7,11528.6,1507.7,11508.6z"></path>
+                                                <path d="M227.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,10241.6,289.7,10248.6,227.7,10228.6z"></path>
+                                                <path d="M1507.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,10241.6,1569.7,10248.6,1507.7,10228.6z"></path>
+                                                <path d="M227.7,8948.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,8961.6,289.7,8968.6,227.7,8948.6z"></path>
+                                                <path d="M1507.7,8948.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,8961.6,1569.7,8968.6,1507.7,8948.6z"></path>
+                                                <path d="M227.7,7668.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,7681.6,289.7,7688.6,227.7,7668.6z"></path>
+                                                <path d="M1507.7,7668.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,7681.6,1569.7,7688.6,1507.7,7668.6z"></path>
+                                                <path d="M227.7,6388.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,6401.6,289.7,6408.6,227.7,6388.6z"></path>
+                                                <path d="M1507.7,6388.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,6401.6,1569.7,6408.6,1507.7,6388.6z"></path>
+                                                <path d="M227.7,5108.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,5121.6,289.7,5128.6,227.7,5108.6z"></path>
+                                                <path d="M1507.7,5108.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,5121.6,1569.7,5128.6,1507.7,5108.6z"></path>
+                                                <path d="M227.7,3828.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,3841.6,289.7,3848.6,227.7,3828.6z"></path>
+                                                <path d="M1507.7,3828.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,3841.6,1569.7,3848.6,1507.7,3828.6z"></path>
+                                                <path d="M227.7,2548.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,2561.6,289.7,2568.6,227.7,2548.6z"></path>
+                                                <path d="M1507.7,2548.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,2561.6,1569.7,2568.6,1507.7,2548.6z"></path>
+                                                <path d="M227.7,1268.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,1281.6,289.7,1288.6,227.7,1268.6z"></path>
+                                                <path d="M1507.7,1268.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,1281.6,1569.7,1288.6,1507.7,1268.6z"></path>
+                                            </g>
+                                        </svg>
+                                    <!-- END of SVG dots-->
+                                </div>
+                                <div class="dots-2">
+                                    <!-- SVG Dots-->
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background: new 0 0 191.6 1215.4" xml:space="preserve">
+                                            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)">
+                                                <path d="M227.7,12788.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,12801.6,289.7,12808.6,227.7,12788.6z"></path>
+                                                <path d="M1507.7,12788.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262        C1663.7,12801.6,1569.7,12808.6,1507.7,12788.6z"></path>
+                                                <path d="M227.7,11508.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,11521.6,289.7,11528.6,227.7,11508.6z"></path>
+                                                <path d="M1507.7,11508.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262        C1663.7,11521.6,1569.7,11528.6,1507.7,11508.6z"></path>
+                                                <path d="M227.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,10241.6,289.7,10248.6,227.7,10228.6z"></path>
+                                                <path d="M1507.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,10241.6,1569.7,10248.6,1507.7,10228.6z"></path>
+                                                <path d="M227.7,8948.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,8961.6,289.7,8968.6,227.7,8948.6z"></path>
+                                                <path d="M1507.7,8948.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,8961.6,1569.7,8968.6,1507.7,8948.6z"></path>
+                                                <path d="M227.7,7668.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,7681.6,289.7,7688.6,227.7,7668.6z"></path>
+                                                <path d="M1507.7,7668.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,7681.6,1569.7,7688.6,1507.7,7668.6z"></path>
+                                                <path d="M227.7,6388.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,6401.6,289.7,6408.6,227.7,6388.6z"></path>
+                                                <path d="M1507.7,6388.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,6401.6,1569.7,6408.6,1507.7,6388.6z"></path>
+                                                <path d="M227.7,5108.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,5121.6,289.7,5128.6,227.7,5108.6z"></path>
+                                                <path d="M1507.7,5108.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,5121.6,1569.7,5128.6,1507.7,5108.6z"></path>
+                                                <path d="M227.7,3828.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,3841.6,289.7,3848.6,227.7,3828.6z"></path>
+                                                <path d="M1507.7,3828.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,3841.6,1569.7,3848.6,1507.7,3828.6z"></path>
+                                                <path d="M227.7,2548.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,2561.6,289.7,2568.6,227.7,2548.6z"></path>
+                                                <path d="M1507.7,2548.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,2561.6,1569.7,2568.6,1507.7,2548.6z"></path>
+                                                <path d="M227.7,1268.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,1281.6,289.7,1288.6,227.7,1268.6z"></path>
+                                                <path d="M1507.7,1268.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,1281.6,1569.7,1288.6,1507.7,1268.6z"></path>
+                                            </g>
+                                        </svg>
+                                    <!-- END of SVG dots-->
+                                </div>
+                                <div class="dots-3">
+                                    <!-- SVG Dots-->
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background: new 0 0 191.6 1215.4" xml:space="preserve">
+                                            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)">
+                                                <path d="M227.7,12788.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,12801.6,289.7,12808.6,227.7,12788.6z"></path>
+                                                <path d="M1507.7,12788.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262        C1663.7,12801.6,1569.7,12808.6,1507.7,12788.6z"></path>
+                                                <path d="M227.7,11508.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,11521.6,289.7,11528.6,227.7,11508.6z"></path>
+                                                <path d="M1507.7,11508.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262        C1663.7,11521.6,1569.7,11528.6,1507.7,11508.6z"></path>
+                                                <path d="M227.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,10241.6,289.7,10248.6,227.7,10228.6z"></path>
+                                                <path d="M1507.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,10241.6,1569.7,10248.6,1507.7,10228.6z"></path>
+                                                <path d="M227.7,8948.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,8961.6,289.7,8968.6,227.7,8948.6z"></path>
+                                                <path d="M1507.7,8948.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,8961.6,1569.7,8968.6,1507.7,8948.6z"></path>
+                                                <path d="M227.7,7668.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,7681.6,289.7,7688.6,227.7,7668.6z"></path>
+                                                <path d="M1507.7,7668.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,7681.6,1569.7,7688.6,1507.7,7668.6z"></path>
+                                                <path d="M227.7,6388.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,6401.6,289.7,6408.6,227.7,6388.6z"></path>
+                                                <path d="M1507.7,6388.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,6401.6,1569.7,6408.6,1507.7,6388.6z"></path>
+                                                <path d="M227.7,5108.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,5121.6,289.7,5128.6,227.7,5108.6z"></path>
+                                                <path d="M1507.7,5108.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,5121.6,1569.7,5128.6,1507.7,5108.6z"></path>
+                                                <path d="M227.7,3828.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,3841.6,289.7,3848.6,227.7,3828.6z"></path>
+                                                <path d="M1507.7,3828.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,3841.6,1569.7,3848.6,1507.7,3828.6z"></path>
+                                                <path d="M227.7,2548.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,2561.6,289.7,2568.6,227.7,2548.6z"></path>
+                                                <path d="M1507.7,2548.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,2561.6,1569.7,2568.6,1507.7,2548.6z"></path>
+                                                <path d="M227.7,1268.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,1281.6,289.7,1288.6,227.7,1268.6z"></path>
+                                                <path d="M1507.7,1268.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,1281.6,1569.7,1288.6,1507.7,1268.6z"></path>
+                                            </g>
+                                        </svg>
+                                    <!-- END of SVG dots-->
+                                </div>
+                                <div class="dots-4">
+                                    <!-- SVG Dots-->
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background: new 0 0 191.6 1215.4" xml:space="preserve">
+                                            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)">
+                                                <path d="M227.7,12788.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,12801.6,289.7,12808.6,227.7,12788.6z"></path>
+                                                <path d="M1507.7,12788.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262        C1663.7,12801.6,1569.7,12808.6,1507.7,12788.6z"></path>
+                                                <path d="M227.7,11508.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,11521.6,289.7,11528.6,227.7,11508.6z"></path>
+                                                <path d="M1507.7,11508.6c-151-50-253-216-222-362c25-119,136-230,254-255c194-41,395,142,375,339c-11,105-90,213-190,262        C1663.7,11521.6,1569.7,11528.6,1507.7,11508.6z"></path>
+                                                <path d="M227.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,10241.6,289.7,10248.6,227.7,10228.6z"></path>
+                                                <path d="M1507.7,10228.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,10241.6,1569.7,10248.6,1507.7,10228.6z"></path>
+                                                <path d="M227.7,8948.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,8961.6,289.7,8968.6,227.7,8948.6z"></path>
+                                                <path d="M1507.7,8948.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,8961.6,1569.7,8968.6,1507.7,8948.6z"></path>
+                                                <path d="M227.7,7668.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,7681.6,289.7,7688.6,227.7,7668.6z"></path>
+                                                <path d="M1507.7,7668.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,7681.6,1569.7,7688.6,1507.7,7668.6z"></path>
+                                                <path d="M227.7,6388.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,6401.6,289.7,6408.6,227.7,6388.6z"></path>
+                                                <path d="M1507.7,6388.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,6401.6,1569.7,6408.6,1507.7,6388.6z"></path>
+                                                <path d="M227.7,5108.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,5121.6,289.7,5128.6,227.7,5108.6z"></path>
+                                                <path d="M1507.7,5108.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,5121.6,1569.7,5128.6,1507.7,5108.6z"></path>
+                                                <path d="M227.7,3828.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,3841.6,289.7,3848.6,227.7,3828.6z"></path>
+                                                <path d="M1507.7,3828.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,3841.6,1569.7,3848.6,1507.7,3828.6z"></path>
+                                                <path d="M227.7,2548.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,2561.6,289.7,2568.6,227.7,2548.6z"></path>
+                                                <path d="M1507.7,2548.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,2561.6,1569.7,2568.6,1507.7,2548.6z"></path>
+                                                <path d="M227.7,1268.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C383.7,1281.6,289.7,1288.6,227.7,1268.6z"></path>
+                                                <path d="M1507.7,1268.6c-105-35-200-141-222-248c-43-206,163-412,369-369c155,32,275,190,260,339c-11,105-90,213-190,262        C1663.7,1281.6,1569.7,1288.6,1507.7,1268.6z"></path>
+                                            </g>
+                                        </svg>
+                                    <!-- END of SVG dots-->
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
-
-                        <!-- Button Upload modal -->
-                        <button name="upload_image" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#uploadmodal">
-                                                    Upload image
-                                                </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="uploadmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!-- Upload image input-->
-                                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                                            <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                                            <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
-                                            <div class="input-group-append">
-                                                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- Uploaded image area-->
-                                        <p class="font-italic text-muted text-center">The image uploaded will be rendered inside the box below.</p>
-                                        <div class="image-area mt-4">
-                                            <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" width="20%" height="20%">
-                                        </div>
-                                        <div id="result_gender"></div>
-                                        <div id="result_age"></div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button id="predict_upload" type="button" class="btn btn-primary">Predict</button>
-                                        <button id="close2" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </p>
                     </div>
                 </div>
+            </div>
+        </header>
+        <!-- About Section-->
+        <section class="bg-light py-5">
+            <div class="container px-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-xxl-8">
+                        <div class="text-center my-5">
+                            <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">About</span></h2>
+                            <p class="lead fw-light mb-4">Created and developed by Kevin Pretell, Simone Benitozzi & Mario Avolio.</p>
+                            <p class="text-muted">A web application capable of exploiting a device's camera in order to perform Face Recognition operations using neural approaches. In particular, the classification takes place through the analysis of a set of different features
+                                and with the biological characteristics of the human face and the possible elements that characterize it.</p>
+                            <div class="d-flex justify-content-center fs-2 gap-4">
+                                <a class="text-gradient" href="#!"><i class="bi bi-twitter"></i></a>
+                                <a class="text-gradient" href="#!"><i class="bi bi-linkedin"></i></a>
+                                <a class="text-gradient" href="#!"><i class="bi bi-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-
-
-
-
-
-
-
     </main>
-
-    <footer class="text-muted py-4">
-        <div class="container">
-            <p class="float-end mb-1">
-                <a>Università degli Studi di Milano-Bicocca, Milano - Italia 2023</a>
-            </p>
-            <p class="mb-1">FaceLens - Created and developed by Kevin Pretell, Simone Benitozzi & Mario Avolio </p>
-            <p class="mb-1">Università degli Studi di Milano-Bicocca </p>
+    <!-- Footer-->
+    <footer class="bg-white py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto">
+                    <div class="small m-0">Copyright &copy; Università degli Studi di Milano-Bicocca, Milan - Italy 2023</div>
+                </div>
+                <div class="col-auto">
+                    <a class="small" href="#!">Privacy</a>
+                    <span class="mx-1">&middot;</span>
+                    <a class="small" href="#!">Terms</a>
+                    <span class="mx-1">&middot;</span>
+                    <a class="small" href="#!">Contact</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js "></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.24/webcam.js"></script>
 
-
-    <script src="./script.js"></script>
-    <script type="text/javascript">
-        //CARICO MODELLI
-        var modello = null;
-        (async() => {
-            console.log("Carico modelli...");
-            modello = await tf.loadGraphModel("/UI+CNN/gender_efficientnet_graph/model.json");
-            modello_age = await tf.loadGraphModel("/UI+CNN/age_dropout/model.json");
-
-            console.log("Modelli caricati...");
-        })();
-
-
-
-        //PREDIZIONE UPLOAD IMMAGINE 
-        $('#predict_upload').on('click', function(e) {
-
-
-            console.log("Inizio predizione...");
-            const img = document.getElementById('imageResult');
-            const image = tf.browser.fromPixels(img);
-            const resized_image = tf.image.resizeBilinear(image, [224, 224]).toFloat();
-            const batchedImage = resized_image.expandDims(0)
-
-            var result_gender = modello.predict(batchedImage).dataSync();
-            var result_age = modello_age.predict(batchedImage).dataSync();
-            result_age = Object.values(result_age);
-
-            console.log("Predizione eseguita...");
-            console.log(typeof result_age);
-            var response;
-            var response_age;
-            if (result_gender <= .5) {
-                response = "Sex: Woman";
-            } else {
-                response = "Sex: Man";
-            }
-
-            result_age = result_age.indexOf(Math.max.apply(Math, result_age));
-            switch (result_age) {
-                case 0:
-                    response_age = "Age: 0-3";
-                    break;
-                case 1:
-                    response_age = "Age: 4-7";
-                    break;
-                case 2:
-                    response_age = "Age: 8-14";
-                    break;
-                case 3:
-                    response_age = "Age: 15-24";
-                    break;
-                case 4:
-                    response_age = "Age: 25-34";
-                    break;
-                case 5:
-                    response_age = "Age: 35-44";
-                    break;
-                case 6:
-                    response_age = "Age: 45-54";
-                    break;
-                case 7:
-                    response_age = "Age: 55+";
-            }
-
-            document.getElementById("result_gender").innerHTML = response;
-            document.getElementById("result_age").innerHTML = response_age;
-            console.log("Risultato modello gender: ", result_gender);
-            console.log("Risultato modello age: ", result_age);
-            var kevink = true;
-            return kevink;
-
-        });
-
-
-
-
-
-        //PREDIZIONE
-        $('#predict_webcam').on('click', function(e) {
-
-            console.log("Inizio predizione da webcam...");
-            const img = document.getElementById('imageResult2');
-            const image = tf.browser.fromPixels(img);
-            const resized_image = tf.image.resizeBilinear(image, [224, 224]).toFloat();
-            const batchedImage = resized_image.expandDims(0)
-
-            var result_gender = modello.predict(batchedImage).dataSync();
-            var result_age = modello_age.predict(batchedImage).dataSync();
-            result_age = Object.values(result_age);
-
-            console.log("Predizione eseguita...");
-            console.log(typeof result_age);
-            var response;
-            var response_age;
-            if (result_gender <= .5) {
-                response = "Sex: Woman";
-            } else {
-                response = "Sex: Man";
-            }
-
-            result_age = result_age.indexOf(Math.max.apply(Math, result_age));
-            switch (result_age) {
-                case 0:
-                    response_age = "Age: 0-3";
-                    break;
-                case 1:
-                    response_age = "Age: 4-7";
-                    break;
-                case 2:
-                    response_age = "Age: 8-14";
-                    break;
-                case 3:
-                    response_age = "Age: 15-24";
-                    break;
-                case 4:
-                    response_age = "Age: 25-34";
-                    break;
-                case 5:
-                    response_age = "Age: 35-44";
-                    break;
-                case 6:
-                    response_age = "Age: 45-54";
-                    break;
-                case 7:
-                    response_age = "Age: 55+";
-            }
-
-            document.getElementById("result_gender2").innerHTML = response;
-            document.getElementById("result_age2").innerHTML = response_age;
-            console.log("Risultato modello gender: ", result_gender);
-            console.log("Risultato modello age: ", result_age);
-        });
-
-
-
-
-        //SHOW UPLOADED IMAGE
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#imageResult')
-                        .attr('src', e.target.result);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-
-        $(function() {
-            $('#upload').on('change', function() {
-                readURL(input);
-            });
-        });
-
-
-        //SHOW UPLOADED IMAGE NAME
-        var input = document.getElementById('upload');
-        var infoArea = document.getElementById('upload-label');
-
-        input.addEventListener('change', showFileName);
-
-        function showFileName(event) {
-            var input = event.srcElement;
-            var fileName = input.files[0].name;
-            infoArea.textContent = 'File name: ' + fileName;
-        }
-
-
-        // Configure a few settings and attach camera
-        Webcam.set({
-            width: 320,
-            height: 240,
-            image_format: 'jpeg',
-            jpeg_quality: 90
-        });
-        Webcam.attach('#my_camera');
-
-
-
-        function take_snapshot() {
-            // take snapshot and get image data
-            Webcam.snap(function(data_uri) {
-                // display results in page
-                document.getElementById('results').innerHTML =
-                    '<img id="imageResult2" src="' + data_uri + '"/>';
-            });
-
-        }
-    </script>
 </body>
-
-
 
 </html>
