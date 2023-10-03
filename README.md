@@ -1,70 +1,66 @@
-<a name="readme-top"></a>
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://gitlab.com/gitlab_username/repo_name">
+  <a href="https://github.com/MarioAvolio/FaceLens">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">FaceLens</h3>
+  <h3 align="center">FaceLens</h3>
 
   <p align="center">
     A web application for face recognition
     <br />
-    <a href="https://gitlab.com/lab-proj/people-classification/-/wikis/Documentazione"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://gitlab.com/gitlab_username/repo_name">View Demo</a>
+    <a href="https://github.com/MarioAvolio/FaceLens">View Demo</a>
     ·
-    <a href="https://gitlab.com/gitlab_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/MarioAvolio/FaceLens/issues">Report Bug</a>
     ·
-    <a href="https://gitlab.com/gitlab_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/MarioAvolio/FaceLens/issues">Request Feature</a>
   </p>
 </div>
 
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
 
-
+- [About The Project](#about-the-project)
+  - [High-Level Architecture](#high-level-architecture)
+- [Built With](#built-with)
+- [Contributing](#contributing)
+- [License](#license)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Creation of a web application capable of exploiting a device's camera in order to perform Face Recognition operations using neural approaches. In particular, the classification takes place through the analysis of a set of different features and with the biological characteristics of the human face and the possible elements that characterize it.
-### High-Level architecture
 
+FaceLens is a web application designed for face recognition using neural approaches. It leverages the capabilities of your device's camera to perform face recognition based on various features and the biological characteristics of the human face.
 
+### High-Level Architecture
 
-![IMAGE_DESCRIPTION](images/architecture.drawio.png)
+![High-Level Architecture](images/architecture.drawio.png)
 
-The application consists of 2 main blocks:
-* A user friendly UI which allows you to take pictures from webcam or upload an image, created with Bootstrap, Javascript and JQuery
+The application consists of two main components:
 
-* A backend that processes the output image from the UI thanks to a convolutional deep learning approach implemented with Tensorflow and Keras in a python environment
+1. **User-Friendly UI**: This component allows users to capture pictures from their webcams or upload images. It is built using Bootstrap, JavaScript, and JQuery.
+
+2. **Backend**: The backend processes the images captured by the UI using a convolutional deep learning approach implemented with TensorFlow and Keras in a Python environment.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
-* Python
-* JQuery
-* JavaScript
-* TensorFlow
-* Keras
-* Bootstrap
-* Tensorflow.js
+- [Python](#python)
+- [JQuery](#jquery)
+- [JavaScript](#javascript)
+- [TensorFlow](#tensorflow)
+- [Keras](#keras)
+- [Bootstrap](#bootstrap)
+- [Tensorflow.js](#tensorflowjs)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+Contributions are welcome and greatly appreciated. If you have suggestions or improvements, please consider contributing to the project. Here's how you can get started:
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -72,46 +68,13 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+Don't forget to give the project a star if you find it valuable!
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+This project is distributed under the MIT License. See [`LICENSE.txt`](LICENSE.txt) for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-[contributors-shield]: https://img.shields.io/gitlab/contributors/gitlab_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://gitlab.com/gitlab_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/gitlab/forks/gitlab_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://gitlab.com/gitlab_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/gitlab/stars/gitlab_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://gitlab.com/gitlab_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/gitlab/issues/gitlab_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://gitlab.com/gitlab_username/repo_name/issues
-[license-shield]: https://img.shields.io/gitlab/license/gitlab_username/repo_name.svg?style=for-the-badge
-[license-url]: https://gitlab.com/gitlab_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Python]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
-
-[Python-url]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
